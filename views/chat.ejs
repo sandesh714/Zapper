@@ -34,6 +34,11 @@
     <div class="chat-form-container">
       <h2><%= username %></h2>
       <form id="chat-form">
+        <input 
+          id = "username"
+          type = "hidden"
+          value="<%= username %>"
+        />
         <input
           id="msg"
           type="text"

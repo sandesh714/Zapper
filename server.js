@@ -121,8 +121,8 @@ io.on('connection', socket =>{
 
     //Listening for chatmessage
     
-    socket.on('chatmessage',(msg)=>{
-        io.emit('message', formatmessage('USER',msg));
+    socket.on('chatmessage',(message)=>{
+        io.emit('message', formatmessage(message.username,message.msg));
     })
 
 });

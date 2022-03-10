@@ -15,7 +15,13 @@ socket.on('message', message =>{
 chatform.addEventListener('submit', (e) => {
     e.preventDefault();
     const msg = e.target.elements.msg.value;
-    socket.emit('chatmessage',msg);
+    const username = e.target.elements.username.value;
+    
+    message = {
+        'msg': msg,
+        'username': username
+    }
+    socket.emit('chatmessage',message);
 
     //Clear input box
     e.target.elements.msg.value = '';
