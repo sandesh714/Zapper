@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage&display=swap');
+*{
+    margin: 10px;
+    padding: 0px;
+}
+body{
+    background-color: orange;
+    display:grid;
+    place-items: center;
+    width: 100vw;
+    height:100vh;
+    font-family: 'Lato', sans-serif;
+}
+
+.main{
+    width: 600px;
+    max-width: 90%;
+    text-align: center;
+    background-color: white;
+}
+
+#icon{
+    font-family: 'Road Rage', cursive;
+    font-size: 100px;
+}

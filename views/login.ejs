@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="main">
+        <h1 id = "icon">ZAPPER</h1>
+        <h2>LOG IN TO YOUR ACCOUNT</h2>
+        <% if(messages) { %>
+            <p><%= messages.error %> </p>
+
+        <% } %>
+        <form action = '/' method="POST">
+            <input type ="text" name = "username" placeholder = "sniperZxx"/>
+            <input type = "password" name = "password" placeholder="******" />
+            <button>LOG IN</button>
+        </form>
+        <a href="register/">Create An Account!</a>
+    </div>
+
+</body>
+</html>
