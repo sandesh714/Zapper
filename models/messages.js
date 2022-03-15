@@ -6,7 +6,7 @@ const messageSchema = new Schema({
         type: String,
         required: true
     },
-    userName: {
+    username: {
         type: String,
         required: true
     },
@@ -17,4 +17,5 @@ const messageSchema = new Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model("Message", messageSchema);
+const Messages = mongoose.model('Message', messageSchema)
+module.exports = Messages;

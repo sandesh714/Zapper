@@ -8,6 +8,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const User = require('./models/User');
+const Message = require('./models/messages');
 const bcrypt = require('bcryptjs')
 const {
     checkAuthenticated,
@@ -66,7 +67,7 @@ app.get('/register',checkNotAuthenticated, (req,res)=>{
 })
 
 app.get('/chat',checkAuthenticated,(req, res)=>{
-    res.render('chat', {username : req.user.username});
+    res.render('chat', {user : req.user});
 })
 
 app.post('/', checkNotAuthenticated, passport.authenticate('local',{
@@ -107,22 +108,33 @@ app.delete('/logout',(req, res)=>{
 
 //SOCKET IO 
 io.on('connection', socket =>{
-
-    socket.emit("message",formatmessage(botname, "Welcome to Zapper"));
-
-    //Broadcast when a user connects
-    socket.broadcast.emit('message',formatmessage(botname, 'A user has joined the chat'));
+    
+    Message.find({}).sort({createdAt: -1}).limit(10).then(messages => {
+        // io.emit('load messages', messages.reverse());
+        console.log(messages);
+    })
 
     //Runs when client disconnects
 
-    socket.on("diconnect", ()=>{
+    socket.on("disconnect", ()=>{
         io.emit("message",formatmessage(botname, "A user has left the chat"));
     });
 
     //Listening for chatmessage
     
     socket.on('chatmessage',(message)=>{
-        io.emit('message', formatmessage(message.username,message.msg));
+        let messageAttributes = {
+            content: message.msg,
+            username: message.username,
+            user: message.userid
+        }
+        m = new Message(messageAttributes);
+        m.save()
+            .then(()=>{
+                io.emit('message', formatmessage(message.username,message.msg, message.userid));
+            })
+            .catch(error => console.log(`error: ${error.message}`));
+        
     })
 
 });

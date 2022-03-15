@@ -2,6 +2,10 @@ const chatform = document.getElementById('chat-form');
 const chatmessages = document.querySelector('.chat-messages');
 const socket = io();
 
+
+
+
+
 socket.on('message', message =>{
     console.log(message);
     outputmessage(message);
@@ -11,18 +15,28 @@ socket.on('message', message =>{
     chatmessages.scrollTop = chatmessages.scrollHeight;
 });
 
+socket.on('load messages', (data) => {
+    console.log(data);
+    data.forEach(message => {
+
+        outputmessage(message);
+        
+    })
+})
+
 // When the message submits
 chatform.addEventListener('submit', (e) => {
     e.preventDefault();
     const msg = e.target.elements.msg.value;
     const username = e.target.elements.username.value;
+    const userid = e.target.elements.userid.value;
     
     message = {
         'msg': msg,
-        'username': username
+        'username': username,
+        'userid': userid
     }
-    socket.emit('chatmessage',message);
-
+    socket.emit('chatmessage', message);
     //Clear input box
     e.target.elements.msg.value = '';
     e.target.elements.msg.focus();
