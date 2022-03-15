@@ -8,19 +8,32 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <div class="main">
-        <h1 id = "icon">ZAPPER</h1>
-        <h2>LOG IN TO YOUR ACCOUNT</h2>
-        <% if(messages) { %>
-            <p><%= messages.error %> </p>
-
-        <% } %>
-        <form action = '/' method="POST">
-            <input type ="text" name = "username" placeholder = "sniperZxx"/>
-            <input type = "password" name = "password" placeholder="******" />
-            <button>LOG IN</button>
-        </form>
-        <a href="register/">Create An Account!</a>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <% if(messages) { %>
+                    <p><%= messages.error %> </p>
+                <% } %>
+                <form action="/" class="sign-in-form" method="POST">
+                    <h1 class="icon">Zapper</h1>
+                    <h2 class = "title">Sign In</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user">
+ 
+                        </i>
+                        <input type="text" name="username" placeholder="Username"/>
+                     </div>
+                     <div class="input-field">
+                         <i class="fas fa-lock">
+ 
+                         </i>
+                         <input type="password" name="password" placeholder="*********" />
+                     </div>
+                     <input type="submit" class="btn solid" value="Login"/>
+                 </form>
+                <a href="/register">Create an Account.</a>
+            </div>
+        </div>
     </div>
 
 </body>
