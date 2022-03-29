@@ -15,13 +15,8 @@ socket.on('message', message =>{
     chatmessages.scrollTop = chatmessages.scrollHeight;
 });
 
-socket.on('load messages', (data) => {
-    console.log(data);
-    data.forEach(message => {
-
-        outputmessage(message);
-        
-    })
+socket.on('load message', (data) => {
+    outputmessage(data);
 })
 
 // When the message submits
@@ -50,6 +45,18 @@ function outputmessage(message){
     div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
     <p class="text">
         ${message.text}
+    </p>`;
+    document.querySelector('.chat-messages').appendChild(div);
+}
+
+
+//Output function for loading old messages
+function output_old_messages(message){
+    const div = document.createElement('div');
+    div.classList.add('message');
+    div.innerHTML = `<p class="meta">${message.username} <span>${message.createdAt}</span></p>
+    <p class="text">
+        ${message.content}
     </p>`;
     document.querySelector('.chat-messages').appendChild(div);
 }

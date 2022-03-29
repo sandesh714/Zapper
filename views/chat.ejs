@@ -18,31 +18,52 @@
     <main class="chat-main">
       <div class="chat-sidebar">
         <h3><i class="fas fa-comments"></i> Group Name:</h3>
-        <h2 id="room-name">JavaScript</h2>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown</button>
+          <div class="dropdown-content">
+            <!-- <a href="#">Noise Music</a>
+            <a href="#">Hiphop</a>
+            <a href="#">Electronic Music</a> -->
+            <% for(var i = 0; i < data.groups.length; i ++) { %>
+              <a href = "#"><%= data.groups[i] %></li></a>
+            <% } %>
+          </div>
+        </div> 
         <h3><i class="fas fa-users"></i> Users</h3>
         <ul id="users">
-          <li>Sniperzz</li>
+          <!-- <li>Sniperzz</li>
           <li>Yunglean</li>
           <li>C$rtier</li>
           <li>1337</li>
-          <li>s@dboy$</li>
+          <li>s@dboy$</li> -->
+
+          <% for(var i = 0; i < data.users.length; i ++) { %>
+            <li><%= data.users[i] %></li>
+          <% } %>
+          <form action = "/register_group" method="POST">
+            Create your own group<br>
+            <input type="text" name="groupname"/><br>
+            <input type="hidden" name="userId" value="<%= data.user._id %>">
+            <input type="Submit" class="btn solid" value="Create Group">
+          </form>
         </ul>
+        
       </div>
       <div class="chat-messages">
       </div>
     </main>
     <div class="chat-form-container">
-      <h2><%= user.username %></h2>
+      <a href="/edit_profile">Edit Profile</a>
       <form id="chat-form">
         <input 
           id = "username"
           type = "hidden"
-          value="<%= user.username %>"
+          value="<%= data.user.username %>"
         />
         <input
           id = "userid"
           type="hidden"
-          value="<%= user._id %>"
+          value="<%= data.user._id %>"
         />
         <input
           id="msg"

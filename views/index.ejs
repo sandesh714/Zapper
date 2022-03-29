@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zapper</title>
+</head>
+<body>
+      <div class = "container">
+        <div class="welcomemessage">
+          <h1>Hello <%= data.username %></h1>
+        </div>
+        <div class="users">
+          <h2>All members: </h2>
+          <% for (var i = 0; i < data.groups.length; i++) { %>
+            <a href="/chat"><%= data.users[i] %>
+          <% } %>
+        </div>
+        <div class="groups">
+          <h2>All users:</h2>
+          <% for(var i = 0; i < data.groups.length; i ++) { %>
+            <a href = "#"><%= data.groups[i] %></li></a>
+          <% } %>
+        </div>
+      </div>
+</body>
+</html>
