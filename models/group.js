@@ -6,13 +6,20 @@ const groupSchema = new Schema({
         type:String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
     members:{
-        type: Schema.Types.ObjectId,
-        ref: "User"
+        type: [String],
+        required: true
     },
     messages: {
         type: Schema.Types.ObjectId,
         ref: "Messages"
+    },
+    description:{
+        type: String
     }
 }, {timestamps: true});
 

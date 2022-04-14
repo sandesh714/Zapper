@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Friend Requests</title>
+    <link rel="stylesheet" href="/add_friends.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+	  <script src="https://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="people-nearby">
+              <% if(data.friend_requests.length == 0){ %>
+                <p>No friend requests right now</p>
+              <% } %>
+              <% for(var i = 0; i < data.friend_requests.length; i ++) { %>
+                <div class="nearby-user">
+                  <div class="row">
+                    
+                    <div class="col-md-7 col-sm-7">
+                      <h5><a href="#" class="profile-link"><%= data.friend_requests[i] %></a></h5>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <form action = '/friend_requests' method = "POST" name="send" id="send">
+                        <input type="hidden" id= "reqTo" name="reqTo" value="<%= data.friend_requests[i] %>"/>
+                        <input type="submit" value="Accept" class = "btn btn-primary pull-right"/>
+                      </form>
+                    </div>
+                    
+                  </div>
+                </div>
+              <% } %>     
+            </div>
+    	</div>
+	</div>
+</div>
+
+
+
+<!-- <script src="/socket.io/socket.io.js"></script>
+<script src="/add_friends.js"></script> -->
+</body>
+</html>

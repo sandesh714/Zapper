@@ -3,6 +3,20 @@ const chatmessages = document.querySelector('.chat-messages');
 const socket = io();
 
 
+let {username, room} = Qs.parse(window.location.search, {
+    ignoreQueryPrefix: true
+})
+
+
+
+
+
+socket.emit('joinRoom', { username, room});
+
+
+
+
+//Join chatroom
 
 
 
@@ -15,6 +29,11 @@ socket.on('message', message =>{
     chatmessages.scrollTop = chatmessages.scrollHeight;
 });
 
+socket.on('load group', (data) => {
+    console.log(data);
+    outputgroupinfo(data);
+})
+
 socket.on('load message', (data) => {
     outputmessage(data);
 })
@@ -25,7 +44,6 @@ chatform.addEventListener('submit', (e) => {
     const msg = e.target.elements.msg.value;
     const username = e.target.elements.username.value;
     const userid = e.target.elements.userid.value;
-    
     message = {
         'msg': msg,
         'username': username,
@@ -47,6 +65,13 @@ function outputmessage(message){
         ${message.text}
     </p>`;
     document.querySelector('.chat-messages').appendChild(div);
+}
+
+function outputgroupinfo(message){
+    const div = document.createElement('div');
+    div.innerHTML = `<h2>${message.group_name}</h2>
+                    <p>${message.group_description}</p>`
+    document.querySelector('.chat-sidebar').appendChild(div);
 }
 
 

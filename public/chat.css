@@ -41,7 +41,8 @@ a {
 /* Chat Page */
 
 .chat-container {
-	max-width: 1100px;
+	max-width: 1920px;
+	max-height: 1080px;
 	background: #fff;
 	margin: 30px auto;
 	overflow: hidden;
@@ -61,6 +62,7 @@ a {
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
+	height: 400px;
 }
 
 .chat-sidebar {
@@ -77,13 +79,11 @@ a {
 	margin-bottom: 20px;
 }
 
-.chat-sidebar h3 {
+.chat-sidebar p {
 	margin-bottom: 15px;
 }
 
-.chat-sidebar ul li {
-	padding: 10px 0;
-}
+
 
 .chat-messages {
 	padding: 30px;

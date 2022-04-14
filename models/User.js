@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const userSchema = new mongoose.Schema({
     username:{
         type: String,
@@ -8,7 +7,19 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:[false,'Email is required']
+        required:[false ,'Email is not required']
+    },
+    pending_requests: {
+        type:[String],
+        required:false
+    },
+    friend_list:{
+        type: mongoose.Schema.Types.Mixed,
+        required: false
+    },
+    friend_requests: {
+        type: [String],
+        required: false
     },
     password:{
         type:String,
